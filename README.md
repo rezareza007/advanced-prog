@@ -1,6 +1,6 @@
 # Advanced Programming Cource
 
-**Instructor:** Reza Rezazadegan      
+**Instructor:** [Reza Rezazadegan](https://www.linkedin.com/in/reza-rezazadegan-382601a8/)
 
 **Venue:** Shiraz University, Department of Mathematics and Compuer Science   
 
