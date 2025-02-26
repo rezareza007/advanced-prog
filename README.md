@@ -2,14 +2,14 @@
 
 **Instructor:** [Reza Rezazadegan](https://www.linkedin.com/in/reza-rezazadegan-382601a8/)
 
-**Venue:** Shiraz University, Department of Mathematics and Compuer Science   
+**Venue:** Shiraz University, Department of Mathematics and Computer Science   
 
 **Programming languages:** Python and C   
 
 **Course webpage:** www.dreamintelligent.com/advanced-programming-2025
 **Course Github:** https://github.com/rezareza007/advanced-prog
 
-**Texbooks:**
+**Textbooks:**
 - Charles Severance, Python For Everybody
 - Martelli, et al., Python in a Nutshell, 4th edition, 2023
 - Kernighan, Ritchie, The C programming language
