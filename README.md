@@ -1,8 +1,8 @@
 # Advanced Programming Cource
 
-**Instructor:** [Reza Rezazadegan](https://www.linkedin.com/in/reza-rezazadegan-382601a8/)
+**Instructor:** [Reza Rezazadegan](https://www.linkedin.com/in/reza-rezazadegan-382601a8/)      
 
-**Venue:** Shiraz University, Department of Mathematics and Computer Science   
+**Venue:** Shiraz University, Department of Mathematics and Computer Science      
 
 **Programming languages:** Python and C   
 
