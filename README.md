@@ -1,10 +1,12 @@
 # Advanced Programming Cource
 
-**Instructor:** Reza Rezazadegan     
+**Instructor:** Reza Rezazadegan      
+
 **Venue:** Shiraz University, Department of Mathematics and Compuer Science   
+
 **Programming languages:** Python and C   
 
-**Course webpage:** www.dreamintelligent.com/advanced-prog-2025
+**Course webpage:** www.dreamintelligent.com/advanced-programming-2025
 **Course Github:** https://github.com/rezareza007/advanced-prog
 
 **Texbooks:**
