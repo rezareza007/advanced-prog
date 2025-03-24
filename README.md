@@ -6,7 +6,7 @@
 
 **Programming languages:** Python and C   
 
-**Course webpage:** www.dreamintelligent.com/advanced-programming-2025
+**Course webpage:** www.dreamintelligent.com/advanced-programming-2025     
 **Course Github:** https://github.com/rezareza007/advanced-prog
 
 **Textbooks:**
