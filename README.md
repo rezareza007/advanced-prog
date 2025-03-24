@@ -1,4 +1,4 @@
-# Advanced Programming Cource
+# Advanced Programming Course
 
 **Instructor:** [Reza Rezazadegan](https://www.linkedin.com/in/reza-rezazadegan-382601a8/)      
 
