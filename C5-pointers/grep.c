@@ -17,14 +17,16 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    filename=argv[0];
-    query=argv[1];
+    filename=argv[1];
+    query=argv[2];
+
+    //printf("%s\n%s\n" ,filename, query);
 
     fptr=fopen(filename, "r");
 
     if (fptr==NULL)
     {
-       printf("Could not open the file!\n");
+       printf("%s", "Could not open the file!\n");
        return 1;
     }
 
