@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
+#define MAXWORD 100
 
 struct list_node {
     char* word;
@@ -26,43 +28,110 @@ void insert_after(struct list_node * new_node, struct list_node * existing_node)
 }
 
 //Inserts a new node for new_word in the linked list whose first node is head.
-void insert (char* new_word, struct list_node * head)
+void insert (char* new_word, struct list_node ** head_pointer)
 {
-    struct list_node new_node;
-    new_node.word=new_word;
-    new_node.count=1;
+    struct list_node *new_node;
+    new_node=(struct list_node *) malloc(sizeof(struct list_node));
+    if(new_node==NULL)
+    {
+        printf("%s", "Can't create a new node\n");
+    }
 
-    if(head==NULL) //The list is empty
+    new_node->word=new_word;
+    new_node->count=1;
+    new_node->next=NULL;
+    new_node->prev=NULL;
+
+
+    int c;
+    
+    //struct list_node *head=*head_pointer;
+
+    if(*head_pointer==NULL) //The list is empty
     {
             
-            head=&new_node;
+            *head_pointer=new_node;
+            printf("%s", "Created the first node\n");
+            return;
 
     }
-    struct list_node * current=head;
+
+    struct list_node * current=*head_pointer;
     
     while(current-> next!=NULL)
     {
-        switch (strcmp( current->word, new_word ))
-        {
-            case 0:  //The two words are equal
+        c=strcmp( current->word, new_word );
+        if(c==0){
+              //The two words are equal
                    (current->count)++;
                    break;
-            case 1:  //current->word is greater
-
-            insert_after(&new_node, current->prev);
+            }
+        else if (c>0)  //current->word is greater
+        {   if(current->prev!=NULL) 
+                insert_after(new_node, current->prev);
+            else //We must update the head
+            {
+                new_node->next=*head_pointer;
+                (*head_pointer)-> prev=new_node;
+                *head_pointer=new_node;
+            } 
             break;
-
-            case -1:  //new_word is greater
+        }
+        else{   //new_word is greater
             //This is the way to go to the next node of a linked list:
             
             if (current->next!=NULL)
                 current=current->next;
             else //We reached the end of the list
             {   //Insert the new node at the end of the list
-                insert_after(&new_node, current);
+                insert_after(new_node, current);
             
-            }      
+            } 
+            
         } 
     }
 
 }
+
+int main(int argc, char* argv[]) 
+ { 
+    if( argc<1)
+    {
+       printf("Please supply a file name!\n");
+       return 1;
+    }
+
+    char *filename=argv[1];
+    FILE* f;
+    f=fopen(filename, "r");
+
+    if (f==NULL)
+    {
+        printf("%s", "Can't open the file!\n");
+        return 1;
+    }
+
+    int n; 
+    char word[MAXWORD]; 
+
+    struct list_node*head=NULL;
+
+    while ( fscanf(f, "%s", word, MAXWORD)!=EOF )
+    {
+        //printf("%s\n", word);
+        insert(word, &head);
+        printf("%s\n",head->word);
+    
+     }
+
+    fclose(f);
+
+    struct list_node *current=head; 
+    while(current!=NULL)
+    {
+            printf("%4d %s\n", current-> word, current->count);
+            current=current->next; 
+    }
+        
+ } 
+ 
