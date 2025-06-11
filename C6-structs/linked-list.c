@@ -22,13 +22,13 @@ void insert_after(struct list_node * new_node, struct list_node * existing_node)
    existing_node->next =new_node;
    new_node-> next = existing_next;
 
-   existing_next->prev=new_node;
+   if (existing_next!=NULL) existing_next->prev=new_node;
    new_node ->prev= existing_node;
 
 }
 
 //Inserts a new node for new_word in the linked list whose first node is head.
-void insert (char* new_word, struct list_node ** head_pointer)
+ struct list_node * insert (char* new_word, struct list_node * head)
 {
     struct list_node *new_node;
     new_node=(struct list_node *) malloc(sizeof(struct list_node));
@@ -37,7 +37,7 @@ void insert (char* new_word, struct list_node ** head_pointer)
         printf("%s", "Can't create a new node\n");
     }
 
-    new_node->word=new_word;
+    new_node->word=strdup(new_word);
     new_node->count=1;
     new_node->next=NULL;
     new_node->prev=NULL;
@@ -47,33 +47,36 @@ void insert (char* new_word, struct list_node ** head_pointer)
     
     //struct list_node *head=*head_pointer;
 
-    if(*head_pointer==NULL) //The list is empty
+    if(head==NULL) //The list is empty
     {
-            
-            *head_pointer=new_node;
+            //printf("%s", "head pointer is null\n");
+            head=new_node;
             printf("%s", "Created the first node\n");
-            return;
+            return head;
 
     }
 
-    struct list_node * current=*head_pointer;
+    struct list_node * current=head;
     
-    while(current-> next!=NULL)
-    {
+    while(1) //(current-> next!=NULL)
+    {   
+        printf("%s, %s\n",current->word, new_word );
+
         c=strcmp( current->word, new_word );
         if(c==0){
               //The two words are equal
                    (current->count)++;
                    break;
             }
-        else if (c>0)  //current->word is greater
-        {   if(current->prev!=NULL) 
+        else if (c>0)  //current->word is greater than new_word
+        {   
+            if(current->prev!=NULL) 
                 insert_after(new_node, current->prev);
             else //We must update the head
             {
-                new_node->next=*head_pointer;
-                (*head_pointer)-> prev=new_node;
-                *head_pointer=new_node;
+                new_node->next=head;
+                (head)-> prev=new_node;
+                head=new_node;
             } 
             break;
         }
@@ -85,11 +88,14 @@ void insert (char* new_word, struct list_node ** head_pointer)
             else //We reached the end of the list
             {   //Insert the new node at the end of the list
                 insert_after(new_node, current);
+                break;
             
             } 
             
         } 
     }
+
+    return head;
 
 }
 
@@ -101,7 +107,8 @@ int main(int argc, char* argv[])
        return 1;
     }
 
-    char *filename=argv[1];
+    //char *filename=argv[1];
+    char* filename="text.txt";
     FILE* f;
     f=fopen(filename, "r");
 
@@ -119,17 +126,17 @@ int main(int argc, char* argv[])
     while ( fscanf(f, "%s", word, MAXWORD)!=EOF )
     {
         //printf("%s\n", word);
-        insert(word, &head);
+        head=insert(word, head);
         printf("%s\n",head->word);
     
-     }
+    }
 
     fclose(f);
 
     struct list_node *current=head; 
     while(current!=NULL)
     {
-            printf("%4d %s\n", current-> word, current->count);
+            printf("%4d %s\n", current-> count, current->word);
             current=current->next; 
     }
         
